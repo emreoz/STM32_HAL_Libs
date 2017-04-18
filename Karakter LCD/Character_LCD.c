@@ -18,12 +18,15 @@
 ##########################################################################
 */
 
-#include "stm32f1xx_hal.h"
+#include "stm32f0xx_hal.h"
 #include "Character_LCD.h"
 	
-void LCD_Delay(unsigned short delay)
-{
-	HAL_Delay(delay);
+void LCD_Delay(uint32_t us)
+{		us=us*50;
+	for(uint32_t i=0;i<us;i++)
+	{
+		__ASM("NOP");
+	}
 }
 
 void LCD_Cmd(char out_char)
